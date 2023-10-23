@@ -8,8 +8,7 @@ app.listen(3000);
 //Cofiguración de cors para que establesca la conexión solo en este dominio
 app.use(cors(
     {
-        // origin: 'http://localhost:5173',
-        origin: 'https://6535f768062e1b7120119fe5--candid-empanada-23da7c.netlify.app',
+        origin: 'http://localhost:5173',
         credentials: true
     }
 ));
