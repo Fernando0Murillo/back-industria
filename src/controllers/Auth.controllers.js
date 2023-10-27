@@ -1,7 +1,7 @@
 import { db } from "../db.js"
 import { createAccessToken } from "../libs/jwt.js";
 import bcrypt from 'bcryptjs'
-import  jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 
@@ -86,14 +86,14 @@ export const login = (req, res) => {
     try {
         db.query(verificarUsuario, [correo], async (error, results) => {
 
-            if (error) { res.send(error) }
+            if (error) { return res.send(error) }
 
             if (results.length > 0) {
 
                 const contraceniaHash = await bcrypt.compare(contracenia, results[0].contracenia);
 
                 if (!contraceniaHash) {
-                    return res.status(400).json({contracenia: 'La contraceña es incorrecta'})
+                    return res.status(400).json({ contracenia: 'La contraceña es incorrecta' })
                 }
 
                 const token = await createAccessToken({
@@ -116,20 +116,20 @@ export const login = (req, res) => {
                 });
 
             } else {
-                res.status(400).json({email: 'El usuario no existe'})
+                return res.status(400).json({ email: 'El usuario no existe' })
             }
 
         });
 
     } catch (error) {
-
+        return res.status(500).json({ error: 'Error en el servidor' });
     }
 
 }
 
 export const salir = async (req, res) => {
     res.cookie("token", "", {
-       // httpOnly: true,
+        // httpOnly: true,
         secure: true,
         expires: new Date(0),
     });
