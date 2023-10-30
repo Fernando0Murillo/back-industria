@@ -43,3 +43,6 @@ export const eliminarProveedor = (req, res) => {
     }
 }
 
+export const crearProvedor = () => {
+    console.log('Bien')
+} 

@@ -1,7 +1,9 @@
 import express from "express";
-import routes from './routes/Auth.routes.js'
-import cors from 'cors'
+import cors from 'cors';
 import cookieParser from "cookie-parser";
+import routes from './routes/Auth.routes.js';
+import proveedor from './routes/Proveedor.routes.js';
+
 
 const app = express();
 app.listen(3000);
@@ -17,3 +19,6 @@ app.use(cookieParser());
 console.log('Server en el puerto ', 3000)
 
 app.use('/', routes);
+app.use('/proveedor', proveedor);
+
+
