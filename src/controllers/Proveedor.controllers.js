@@ -44,5 +44,6 @@ export const eliminarProveedor = (req, res) => {
 }
 
 export const crearProvedor = () => {
-    console.log('Bien')
+    // Aqui la logica del controlador
+    console.log('Listo para crear un proveedor')
 } 
