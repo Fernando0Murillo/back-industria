@@ -1,11 +1,14 @@
 import { Router } from 'express';
 import { verificarToken } from '../controllers/Auth.controllers.js'
-import { listaProveedor } from '../controllers/Proveedor.controllers.js'
+import { listaProveedor, eliminarProveedor, crearProvedor } from '../controllers/Proveedor.controllers.js'
 
 
-const routerProveedor = Router();
+const proveedor = Router();
 
-routerProveedor.get('/proveedores', verificarToken, listaProveedor);
+proveedor.get('/lista-proveedores', listaProveedor)
+proveedor.delete('/eliminar-proveedor/:id', eliminarProveedor)
+
+proveedor.post('/agregar-proveedor', crearProvedor);
 
 
-export default routerProveedor;
+export default proveedor;
