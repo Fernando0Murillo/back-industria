@@ -7,8 +7,7 @@ const routesProveedor = Router();
 
 routesProveedor.get('/lista-proveedores', listaProveedor)
 routesProveedor.delete('/eliminar-proveedor/:id', eliminarProveedor)
-
-routesProveedor.post('/agregar-proveedor', crearProvedor);
+routesProveedor.post('/agregar-proveedor', crearProvedor)
 
 
 export default routesProveedor;

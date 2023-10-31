@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { login, regitrarse, salir, home, verificarToken } from '../controllers/Auth.controllers.js'
-import { eliminarProveedor, listaProveedor } from '../controllers/Proveedor.controllers.js';
+import { eliminarProveedor, listaProveedor, crearProvedor } from '../controllers/Proveedor.controllers.js';
 
 const router = Router()
 
@@ -17,5 +17,5 @@ router.get('/home', verificarToken, home)
 // Rutas para proveedor
 router.get('/proveedor', listaProveedor)
 router.delete('/eliminar-proveedor/:id', eliminarProveedor)
-
+router.post('/agregar-proveedor', crearProvedor)
 export default router;

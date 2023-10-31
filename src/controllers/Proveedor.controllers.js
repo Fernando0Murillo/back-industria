@@ -43,7 +43,26 @@ export const eliminarProveedor = (req, res) => {
     }
 }
 
-export const crearProvedor = () => {
-    // Aqui la logica del controlador
-    console.log('Listo para crear un proveedor')
+export const crearProvedor = (req, res) => {
+    // console.log('me leo');
+    const { nombre, numeroTelefono, correo, direccion } = req.body;
+    if (!nombre || !correo) {
+        return res.status(400).json({ message: 'Nombre y correo son requeridos' });
+    }
+    const query = 'Insert into proveedor (nombre,numeroTelefono,correo,direccion) value(?,?,?,?)';
+
+    try {
+        db.query(query, [nombre, numeroTelefono, correo, direccion], (error, results) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).json({ mensaje: 'Error al agregar un proveedor' });
+            } else {
+                return res.status(200).json({ mensaje: 'proveedeor agregado exitosamente' });
+            }
+        });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({ mensaje: 'error interno del servidor' });
+    }
 } 
