@@ -65,4 +65,20 @@ export const crearProvedor = (req, res) => {
         console.log(error);
         return res.status(500).json({ mensaje: 'error interno del servidor' });
     }
-} 
+}
+
+export const actualizarProveedor = (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, numeroTelefono, correo, direccion } = req.body;
+
+        if (id == undefined || nombre == undefined || numeroTelefono == undefined || correo == undefined || direccion == undefined) {
+            res.status(404).json({ message: "Error en la peticion" });
+        }
+        const proveedor = { nombre, numeroTelefono, correo, direccion };
+        db.query("UPDATE proveedor SET ? WHERE id=?", [proveedor, id]);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}

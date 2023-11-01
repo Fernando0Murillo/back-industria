@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { login, regitrarse, salir, home, verificarToken } from '../controllers/Auth.controllers.js'
-import { eliminarProveedor, listaProveedor, crearProvedor } from '../controllers/Proveedor.controllers.js';
+import { eliminarProveedor, listaProveedor, crearProvedor, actualizarProveedor } from '../controllers/Proveedor.controllers.js';
 
 const router = Router()
 
@@ -18,4 +18,5 @@ router.get('/home', verificarToken, home)
 router.get('/proveedor', listaProveedor)
 router.delete('/eliminar-proveedor/:id', eliminarProveedor)
 router.post('/agregar-proveedor', crearProvedor)
+router.put('/actualizar-proveedor/:id', actualizarProveedor)
 export default router;
