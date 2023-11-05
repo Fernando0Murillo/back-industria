@@ -3,6 +3,8 @@ import cors from 'cors';
 import cookieParser from "cookie-parser";
 import routes from './routes/Auth.routes.js';
 import routesProveedor from './routes/Proveedor.routes.js';
+import routesPaciente from "./routes/Paciente.routes.js";
+
 
 
 const app = express();
@@ -20,5 +22,6 @@ console.log('Server en el puerto ', 3000)
 
 app.use('/', routes);
 app.use('/proveedor', routesProveedor);
+app.use('/paciente', routesPaciente);
 
 

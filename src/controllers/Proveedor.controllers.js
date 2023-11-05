@@ -46,6 +46,9 @@ export const eliminarProveedor = (req, res) => {
 export const crearProvedor = (req, res) => {
     // console.log('me leo');
     const { nombre, numeroTelefono, correo, direccion } = req.body;
+
+    console.log(nombre)
+
     if (!nombre || !correo) {
         return res.status(400).json({ message: 'Nombre y correo son requeridos' });
     }
@@ -67,7 +70,9 @@ export const crearProvedor = (req, res) => {
     }
 }
 
-export const actualizarProveedor = (req, res) => {
+
+
+export const actualizarProveedor = async (req, res) => {
     try {
         const { id } = req.params;
         const { nombre, numeroTelefono, correo, direccion } = req.body;
