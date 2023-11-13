@@ -75,6 +75,16 @@ export const regitrarse = async (req, res) => {
     }
 };
 
+const registrarEventoEnBitacora = (evento, descripcion) => {
+    const insertarEvento = 'INSERT INTO bitacora (evento, descripcion) VALUES ( ?, ?)';
+
+    db.query(insertarEvento, [evento, descripcion], (error) => {
+        if (error) {
+            console.error('Error al registrar evento en bitácora:', error);
+            // Puedes manejar el error de acuerdo a tus necesidades
+        }
+    });
+};
 
 
 export const login = (req, res) => {
@@ -115,6 +125,12 @@ export const login = (req, res) => {
                     correo: results[0].correo
                 });
 
+                const nombreUsuario = results[0].nombre;
+                const apellidoUsuario = results[0].apellido;
+                const eventoInicioSesion = 'Inicio de sesión';
+                const descripcionInicioSesion = `El usuario ${nombreUsuario} ${apellidoUsuario} inició sesión en la aplicación.`;
+                registrarEventoEnBitacora(eventoInicioSesion, descripcionInicioSesion);
+
             } else {
                 return res.status(400).json({ email: 'El usuario no existe' })
             }
@@ -133,6 +149,9 @@ export const salir = async (req, res) => {
         secure: true,
         expires: new Date(0),
     });
+    const eventoCierreSesion = 'Cierre de sesión';
+    const descripcionCierreSesion = 'El usuario cerró sesión en la aplicación.';
+    registrarEventoEnBitacora(eventoCierreSesion, descripcionCierreSesion);
     return res.sendStatus(200);
 }
 

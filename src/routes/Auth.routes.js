@@ -3,6 +3,7 @@ import { login, regitrarse, salir, home, verificarToken } from '../controllers/A
 
 import { eliminarProveedor, listaProveedor, crearProvedor, actualizarProveedor } from '../controllers/Proveedor.controllers.js';
 import { listaPaciente } from '../controllers/Paciente.controllers.js';
+import { obtenerRegistrosBitacora } from '../controllers/Registros.controllers.js';
 
 
 const router = Router()
@@ -27,4 +28,6 @@ router.put('/actualizar-proveedor/:id', actualizarProveedor)
 
 // Rutas para pasiente
 router.get('/paciente', listaPaciente)
+
+router.get('/bitacora',obtenerRegistrosBitacora)
 export default router;
