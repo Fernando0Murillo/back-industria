@@ -20,6 +20,28 @@ export const listaCitas = (req, res) => {
 
 }
 
+export const listarCitasCercanas = (req, res) => {
+    const fechaActual = new Date().toISOString();
+    const fechaLimite = new Date();
+    fechaLimite.setDate(fechaLimite.getDate() + 7);
+    const fechaLimiteISO = fechaLimite.toISOString();
+
+    const consultaCitas = `SELECT * FROM citas WHERE fecha_reservacion BETWEEN ? AND ? ORDER BY ABS(DATEDIFF(fecha_reservacion, ?)) LIMIT 3`;
+
+    try {
+        db.query(consultaCitas, [fechaActual, fechaLimiteISO, fechaActual], (error, resultados) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ mensaje: 'Error al listar las citas cercanas' });
+            } else {
+                return res.json(resultados);
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+};
 
 export const agendarCita = (req, res) => {
     const { fechaReservacion, pacienteId, descripcion } = req.body;
