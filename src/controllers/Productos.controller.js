@@ -63,11 +63,11 @@ export const contadorDeProductoMinimo = (req, res) => {
 export const actualizarProductos = (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, cantidad, descripcion, precio_unitario, proveedor_id } = req.body;
-        if (id == undefined || nombre == undefined || cantidad == undefined || descripcion == undefined || precio_unitario == undefined || proveedor_id == undefined) {
+        const { nombre_producto, cantidad, descripcion, precio_unitario, proveedor_id } = req.body;
+        if (id == undefined || nombre_producto == undefined || cantidad == undefined || descripcion == undefined || precio_unitario == undefined || proveedor_id == undefined) {
             res.status(404).json({ message: "Error en la peticion" });
         }
-        const producto = { nombre, cantidad, descripcion, precio_unitario, proveedor_id};
+        const producto = { nombre_producto, cantidad, descripcion, precio_unitario, proveedor_id};
         db.query("UPDATE productos SET ? where id=?", [producto, id])
     } catch (error) {
         res.status(500);

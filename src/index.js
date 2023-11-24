@@ -6,6 +6,9 @@ import routesProveedor from './routes/Proveedor.routes.js';
 import routesPaciente from "./routes/Paciente.routes.js";
 import routesCita from "./routes/Cita.routes.js";
 import routesProductos from "./routes/Productos.routes.js";
+import routesServicios from "./routes/Servicios.routes.js";
+import routesVentas from "./routes/Ventas.routes.js";
+import routesServiciosVentas from "./routes/Venta_Servicio.routes.js";
 
 
 
@@ -28,5 +31,8 @@ app.use('/proveedor', routesProveedor);
 app.use('/paciente', routesPaciente);
 app.use('/citas', routesCita);
 app.use('/productos',routesProductos);
+app.use('/servicios', routesServicios);
+app.use('/ventas', routesVentas);
+app.use('/ventas-servicios', routesServiciosVentas);
 
 

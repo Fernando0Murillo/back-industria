@@ -26,7 +26,7 @@ export const listarCitasCercanas = (req, res) => {
     fechaLimite.setDate(fechaLimite.getDate() + 7);
     const fechaLimiteISO = fechaLimite.toISOString();
 
-    const consultaCitas = `SELECT * FROM citas WHERE fecha_reservacion BETWEEN ? AND ? ORDER BY ABS(DATEDIFF(fecha_reservacion, ?)) LIMIT 3`;
+    const consultaCitas = `SELECT * FROM citas WHERE fecha_reservacion BETWEEN ? AND ? ORDER BY ABS(DATEDIFF(fecha_reservacion, ?)) LIMIT 5`;
 
     try {
         db.query(consultaCitas, [fechaActual, fechaLimiteISO, fechaActual], (error, resultados) => {
