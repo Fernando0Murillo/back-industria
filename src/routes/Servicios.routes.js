@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { listaServicios, crearServicio, eliminarServicio, actualizarServicio } from '../controllers/Servicios.controllers';
+import { listaServicios, crearServicio, eliminarServicio, actualizarServicio } from '../controllers/Servicios.controllers.js';
 
 const routesServicios = Router();
 
